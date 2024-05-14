@@ -346,14 +346,12 @@ OSTime last_autosave_time = 0;
 u32 extra_autosave_delay_milliseconds = 0;
 
 bool reached_final_three_hours() {
-    // Logic copied with modifications from Interface_DrawClock.
-    if ((CURRENT_DAY >= 4) ||
-        ((CURRENT_DAY == 3) && (CURRENT_TIME >= CLOCK_TIME(3, 0)) && (CURRENT_TIME < CLOCK_TIME(6, 0)))
-    ) {
-        return true;
-    }
-    return false;
+    if (((CURRENT_DAY >= 1) && (CURRENT_DAY <= 3)) &&
+    ((CURRENT_DAY == 3) && (CURRENT_TIME >= CLOCK_TIME(3, 0)) && (CURRENT_TIME < CLOCK_TIME(6, 0)))
+) {
+    return true;
 }
+
 
 void autosave_reset_timer() {
     last_autosave_time = osGetTime();
